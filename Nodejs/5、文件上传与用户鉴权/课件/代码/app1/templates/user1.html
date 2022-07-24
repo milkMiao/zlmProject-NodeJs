@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>个人中心</h1>
+<form action="/edit" method="post" enctype="application/x-www-form-urlencoded">
+    <p>
+        年龄：<input type="text" name="age" value="{{user.age}}">
+    </p>
+    <p>
+        性别：
+        <select name="gender">
+            <option value="男" {%if user.gender=="男"%}selected{%endif%}>男</option>
+            <option value="女" {%if user.gender=="女"%}selected{%endif%}>女</option>
+        </select>
+    </p>
+    <p>
+        <input type="hidden" name="id" value="{{user.id}}">
+    </p>
+    <p>
+        <button>提交</button>
+    </p>
+</form>
+
+</body>
+</html>

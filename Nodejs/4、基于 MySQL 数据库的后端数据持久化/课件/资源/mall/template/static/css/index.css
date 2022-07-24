@@ -1,0 +1,96 @@
+@import "./base.css";
+
+.main {
+  padding-top: 4px;
+  padding-bottom: 12px;
+  background: #f5f5f5;
+}
+
+/* brick */
+.brick-box {
+  margin-bottom: 8px;
+}
+.brick-box .h {
+  position: relative;
+  height: 58px;
+}
+.brick-box .c {
+}
+
+.brick-box .h .title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 200;
+  line-height: 58px;
+  color: #333;
+}
+.brick-box .h .more {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.brick-box .h .more a {
+  font-weight: 200;
+  line-height: 58px;
+  color: #333;
+  transition: color 0.5s;
+}
+.brick-box .h .more a:hover {
+  color: #ff6700;
+}
+
+.brick-box .c .list {
+  margin: 0 0 -14px -54px;
+}
+/* item */
+.item {
+  height: 260px;
+  padding: 20px 0;
+  position: relative;
+  z-index: 1;
+  float: left;
+  width: 234px;
+  margin-left: 14px;
+  margin-bottom: 14px;
+  background: #fff;
+  transition: all 0.2s linear;
+}
+.item:hover {
+  z-index: 2;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  transform: translate3d(0, -2px, 0);
+}
+.item .figure {
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 18px;
+}
+.item .figure img {
+  width: 160px;
+  height: 160px;
+}
+.item .title {
+  margin: 0 10px 2px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+}
+.item .desc {
+  margin: 0 10px 10px;
+  height: 18px;
+  font-size: 12px;
+  color: #b0b0b0;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.item .price {
+  margin: 0 10px 14px;
+  text-align: center;
+  color: #ff6700;
+}

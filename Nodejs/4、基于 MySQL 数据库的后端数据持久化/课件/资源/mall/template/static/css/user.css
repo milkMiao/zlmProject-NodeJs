@@ -1,0 +1,71 @@
+@import './base.css';
+
+.main {
+  padding-top: 4px;
+  padding-bottom: 12px;
+  background: #f5f5f5;
+}
+
+.sidebar {
+    float: left;
+    margin-right: 10px;
+    width: 216px;
+}
+.content {
+    float: left;
+    width: 1000px;
+}
+
+.sidebar .menu-box li {
+    padding: 6px 0;
+}
+.sidebar .menu-box a {
+    color: #757575;
+}
+.sidebar .menu-box a:hover {
+    color: #333333;
+}
+.sidebar .menu-box li.active a {
+    color: #ff6700;
+}
+
+.avatar-box {
+    float: left;
+    padding: 40px; 
+}
+.info-box {
+    float: left;
+}
+.avatar-area {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #e3e3e3;
+    border-radius: 50%;
+    padding: 4px;
+    background: #fff;
+    position: relative;
+    z-index: 4;
+}
+.avatar-bg {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    background-repeat: no-repeat;
+}
+.avatar-edit {
+    position: absolute;
+    top: 23px;
+    left: 23px;
+    display: none;
+    width: 43px;
+    height: 43px;
+    background: url('https://account.xiaomi.com/static/res/7c3e9b0/passport/acc-2014/img/n-ava-edit.png') no-repeat;
+    cursor: pointer;
+}
+.avatar-edit:hover {
+    opacity: .8;
+}
+.avatar-area:hover .avatar-edit {
+    display: block;
+}
