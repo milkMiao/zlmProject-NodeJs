@@ -9,7 +9,7 @@ console.log(Ma.a)
 let cai = new Ma.Person();
 cai.hobby();
 
-require("./home");//2、引入文件夹的方式（home文件夹）
+require("./home");//2、引入文件夹的方式（home文件夹）home文件夹内部的引用也会被打印！！！
 
 //3、 node_modules里的模块; 注意不需要加上（./的方式访问）
 let {a,b} = require("mytest");
