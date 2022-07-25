@@ -114,13 +114,13 @@ fs.stat("index.html",(err,stat)=>{
 
 // 删除非空文件夹（里面有文件和文件夹，很多类型文件）
 // 先把目录里的文件删除-->删除空目录；
-// 22
+// 22文件夹
 function removeDir(path){
    let data = fs.readdirSync(path);
-    // ["33","1.txt","2.html"];
+    // ["33文件夹","1.txt","2.html"];
    for(let i=0;i<data.length;i++){
         // 是文件或者是目录； --->?文件 直接删除？目录继续查找；  
-        let url = path + "/" + data[i];
+        let url = path + "/" + data[i]; //  22/33目录
         let stat =  fs.statSync(url);
         if(stat.isDirectory()){
             //目录 继续查找；
@@ -130,7 +130,7 @@ function removeDir(path){
             fs.unlinkSync(url);
         }
    }
-    //  删除空目录
+    //  删除空目录--rmdirSync同步删除，rmdir异步删除需要增加一个回掉函数
    fs.rmdirSync(path);
 }
 removeDir("22");
