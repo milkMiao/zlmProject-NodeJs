@@ -16,6 +16,12 @@
 
 ![Node.js Architecture](./assets/architecture-nodejs.png)
 
+用户代码，第三方库
+
+Node标准库，内置
+
+模块化支持，。。。
+
 
 
 ### 2-2、浏览器 中的 JavaScript
