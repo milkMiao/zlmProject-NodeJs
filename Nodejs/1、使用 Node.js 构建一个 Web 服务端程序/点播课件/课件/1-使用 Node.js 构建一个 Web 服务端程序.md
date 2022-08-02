@@ -501,7 +501,7 @@ server.on('request', async (req, res) => {
 ...
 ```
 
-### 13-3、404 Not Found
+### 13-2、404 Not Found
 
 `404` 也是我们经常听到的一个词，它其实就是状态码中的一种
 

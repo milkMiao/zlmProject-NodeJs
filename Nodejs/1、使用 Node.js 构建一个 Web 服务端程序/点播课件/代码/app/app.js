@@ -39,7 +39,7 @@ routesMap.set('/list', async (req, res) => {
     res.end('列表,,.');
 });
 
-// 注册 request 事件回调函数，当有客户端连接请求被监听到的时候执行回调
+// 注册 request 事件回调函数，当有客户端连接请求，被监听到的时候执行回调
 server.on('request', async (req, res) => {
 
     // 使用 Node.js 的 url 模块中提供的工具方法解析 url 字符串
