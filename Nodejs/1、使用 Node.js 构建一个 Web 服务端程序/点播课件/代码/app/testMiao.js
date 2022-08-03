@@ -128,6 +128,7 @@ server.on('request', async (req , res)=>{ //如上创建 + 回调函数 其实�
 
             // 返回一个404的状态码与提示页面
             res.statusCode = 404;
+            res.setHeader('Content-Type', 'text/html; charset=utf-8');
             res.end('<h1>页面丢失了</h1>');
         }
     }
