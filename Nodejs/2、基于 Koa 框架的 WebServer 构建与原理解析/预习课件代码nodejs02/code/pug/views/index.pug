@@ -27,15 +27,15 @@ html(lang="en")
             我是第一行
             我是第二行
         div
-           | hello
+           | hello----
         - let str = "你好"
         p #{str}
         p #{data}
         ul
             each item,index in users
-                li 姓名是：#{item.name};年龄是：#{item.age};身高是：#{item.height};索引是：#{index}
+                li 索引是：#{index}；姓名是：#{item.name}；年龄是：#{item.age}；身高是：#{item.height};
         - for(let i=0;i<4;i++)
-            span 我是循环出来的数据#{i}
+            span 我是循环出来的数据#{i}；
         - let num = 1
             case num
                 when 1
@@ -45,13 +45,16 @@ html(lang="en")
                 default
                     p num 是其他值
         mixin mydiv
-            div 我是非常常用的div
+            div 我是非常常用的div1
         +mydiv
         +mydiv
+
         mixin pet(name,sex)
             p 这是一只#{name};它的性别是#{sex}
         +pet("狗狗","公")
         +pet("猫","母")
+
+        
         include common.pug
         script(type="text/javascript").
             console.log(1111);
