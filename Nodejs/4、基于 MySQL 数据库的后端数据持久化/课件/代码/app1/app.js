@@ -1,27 +1,24 @@
 const Koa = require('koa');
-const koaStaticCache = require('koa-static-cache');
+const koaStaticCache = require('koa-static-cache');//静态资源中间件 
 const KoaRouter = require('koa-router');
 const koaBody = require('koa-body');
-const nunjucks = require('nunjucks');
+const nunjucks = require('nunjucks');//模版引擎
 const mysql = require('mysql2/promise');
 
+//模版引擎配置
 nunjucks.configure('templates', {
     autoescape: true,
     watch: true,
     noCache: true
 });
 
-
-
-
-
 const app = new Koa();
 
-
+// 只要有请求，则通过koaStaticCache进行处理
 // 静态代理
 app.use(koaStaticCache({
-    prefix: '/public',
-    dir: './public',
+    prefix: '/public',//如果当前请求的url是以/public开始，则作为静态资源请求
+    dir: './public', //服务器上存放静态资源的目录
     dynamic: true,
     gzip: true
 }));
@@ -44,12 +41,8 @@ app.use(async (ctx, next) => {
 
 // 路由
 const router = new KoaRouter();
-
-
 router.get('/users', async (ctx, next) => {
-
     let {gender, age, page} = ctx.request.query;
-
 
     let where = '';
     let prepared = [];
