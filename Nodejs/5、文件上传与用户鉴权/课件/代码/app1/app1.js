@@ -4,7 +4,7 @@ const KoaRouter = require('koa-router');
 // const koaBody = require('koa-body');
 const nunjucks = require('nunjucks');
 const mysql = require('mysql2/promise');
-const queryString = require('querystring');
+const queryString = require('querystring');//字符串等解析作用
 
 
 // 正文解析中间件
