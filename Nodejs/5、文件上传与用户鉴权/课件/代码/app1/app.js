@@ -33,7 +33,7 @@ app.use(async (ctx, next) => {
             signed: true
         }));
         ctx.state.user.username = decodeURI(ctx.state.user.username);
-        // console.log(ctx.state.user);
+        console.log(ctx.state.user);
     } catch (e) {
         ctx.throw(401, '没有权限');
     }
@@ -100,9 +100,10 @@ router.post('/login', koaBody(), async (ctx, next) => {
         username: encodeURI(user.username)
     }), {
         // 会根据 app.keys 中设置的秘钥和cookie, 通过hash得到一个hash字符串
+        // 会话过期时间--生命周期
         signed: true,
         expires: new Date('2021-12-12'),
-        maxAge: 360000
+        maxAge: 360000 //优先于 expires
     })
 
     ctx.set('content-type', 'text/html;charset=utf-8');
