@@ -1,0 +1,174 @@
+body {
+  font: 14px/1.5 Helvetica Neue, Helvetica, Arial, Microsoft Yahei,
+    Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
+  color: #333;
+  background-color: #fff;
+  min-width: 1226px;
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+
+.clearfix:after,
+.clearfix:before {
+  content: " ";
+  display: table;
+  clear: both;
+}
+
+.container {
+  width: 1226px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/*forms*/
+/* btns */
+.btn {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #b0b0b0;
+  text-align: center;
+  width: 298px;
+  height: 52px;
+  line-height: 52px;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.4s;
+}
+.btn-primary {
+  background: #ff6700;
+  border-color: #ff6700;
+  color: #fff;
+}
+.input {
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #b0b0b0;
+  width: 100%;
+  font-size: 16px;
+  line-height: 24px;
+}
+.input:focus {
+  border-color: #ff6700;
+  outline: none;
+}
+
+/* header */
+.app-header {
+  position: relative;
+  z-index: 20;
+  height: 100px;
+}
+.app-header .container {
+  position: relative;
+}
+.app-header .header-logo {
+  float: left;
+  width: 62px;
+  margin-top: 22px;
+}
+.app-header .logo {
+  position: relative;
+  display: block;
+  width: 55px;
+  height: 55px;
+  overflow: hidden;
+  background-color: #ff6700;
+}
+.app-header .nav-list, .app-header .header-user {
+  position: relative;
+  z-index: 10;
+  height: 88px;
+  margin: 0;
+  padding: 12px 0 0 30px;
+  list-style-type: none;
+  font-size: 16px;
+}
+.app-header .header-item {
+  float: left;
+}
+.app-header .header-item .link {
+  display: block;
+  padding: 26px 10px 38px;
+  color: #333;
+  transition: color 0.5s;
+}
+.app-header .header-item .link:hover, .app-header .header-item .link.active {
+  color: #ff6700;
+}
+
+
+/* footer */
+.app-footer .links {
+  padding: 40px 0;
+}
+.app-footer .links-col {
+  float: left;
+  width: 160px;
+  margin: 0;
+}
+.app-footer .links-col dt {
+  margin: -1px 0 26px;
+  font-size: 14px;
+  line-height: 1.25;
+  color: #424242;
+}
+.app-footer .links-col dd {
+  margin: 10px 0 0;
+  font-size: 12px;
+}
+
+/* box */
+.box .c {
+  padding: 30px;
+  background-color: #fff;
+}
+
+.box .c.header {
+  display: flex;
+  justify-content: center;
+  padding-top: 32px;
+  padding-bottom: 12px;
+}
+
+/* pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.pagination a {
+  margin-left: 10px;
+  padding: 10px 15px;
+  background: #ff6700;
+  color: #fff;
+  transition: all 0.4s;
+}
+.pagination a:hover {
+  background: #ff6600c4;
+}
+.pagination a.current {
+  background-color: #fff;
+  color: #ff6700;
+}
