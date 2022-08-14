@@ -1,0 +1,39 @@
+{%extends 'layoutHtml.html' %}
+
+{%block link%}
+<link rel="stylesheet" href="/public/css/index.css" />
+{%endblock%}
+
+
+{%block main%}
+<div class="main">
+  <div class="container">
+    {%for category in categoryItems%}
+    <div class="brick-box">
+      <div class="h">
+        <h2 class="title">{{category.categoryName}}</h2>
+        <div class="more">
+          <a href="/list/{{category.categoryId}}">更多</a>
+        </div>
+      </div>
+      <div class="c clearfix">
+        <ul class="list clearfix">
+          {%for item in category.items%}
+          <li class="item">
+            <a href="/detail/{{item.id}}">
+              <div class="figure">
+                <img src="{{item.cover}}" alt="{{item.name}}" /><!-- src="/public/images/{{item.cover}}" -->
+              </div>
+              <h3 class="title">{{item.name}}</h3>
+              <p class="desc">{{item.description.substring(0, 10)}}</p>
+              <p class="price"><span class="num">{{(item.price/100).toFixed(2)}}</span>元</p>
+            </a>
+          </li>
+          {%endfor%}
+        </ul>
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+</div>
+{%endblock%}

@@ -21,43 +21,118 @@ server.use(tplMiddleware(config.tempalte));
 
 //路由
 //首页
-router.get('/', async (ctx,next)=>{
+router.get('/', async (ctx, next)=>{
+    //获取Tab分类信息 middlewares/database内，ctx.state.services的设置
+    let categoryService = ctx.state.services.category;
+    //获取具体Tab分类信息--下的商品
+    let itemService = ctx.state.services.item;
 
+    let categories = await categoryService.getCategories();//Tab分类信息
+    let categoryItems = []; //结构如：[ {categoryId:1, categoryName:'', items:[]} , {}, {} ...]
+
+    for(let i=0; i< categories.length; i++){
+        let category = categories[i];
+        let {items} = await itemService.getItems(category.id)
+        categoryItems.push({
+            categoryId: category.id,
+            categoryName: category.name,
+            items
+        })
+    }
+
+    console.log("获取Tab分类信息_categories", categories);
+    console.log("获取某个Tab分类商品_categoryItems", categoryItems)
+    ctx.render('index.html', {
+        categories,
+        categoryItems
+    })
 });
 //列表页面
-router.get('/list/:categoryId', async (ctx,next)=>{
+router.get('/list/:categoryId', async (ctx, next)=>{
+    let { categoryId } = ctx.params;
+    let { page, limit } = ctx.query;
+    categoryId = Number(categoryId);
+    page = Number(page) || 1;
+    limit = Number(limit) || 4;
 
+    let categoryService = ctx.state.services.category;
+    let categories = await categoryService.getCategories();
+
+    let category = categories.find(c => c.id == categoryId);
+
+    let itemService = ctx.state.services.item;
+
+    let items = await itemService.getItems(categoryId, page, limit);
+
+    ctx.render('list.html', {
+        user: ctx.state.user,
+        categories,
+        category,
+        items
+    }) 
 });
 //详情页面
-router.get('/detail/:itemId', async (ctx,next)=>{
+router.get('/detail/:itemId', async (ctx, next)=>{
+    let { itemId } = ctx.params;
+    let { page, limit } = ctx.query;
+    itemId = Number(itemId);
+    page = Number(page) || 1;
+    limit = Number(limit) || 4;
 
+    let categoryService = ctx.state.services.category;
+    let categories = await categoryService.getCategories();
+
+    let itemService = ctx.state.services.item;
+
+    let item = await itemService.getItem(itemId);
+    let category = categories.find(c => c.id == item.categoryId);
+
+    let commentService = ctx.state.services.comment;
+
+    let comments = await commentService.getComments(item.id, page, limit);
+
+    comments.comments = comments.comments.map(comment => {
+        let d = new Date(comment.createdAt);
+        return {
+            ...comment,
+            createAtByDate: `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`
+        }
+    })
+
+    ctx.render('detail.html', {
+        user: ctx.state.user,
+        categories,
+        category,
+        item,
+        comments
+    })
 });
 //注册页面
-router.get('/signup', async (ctx,next)=>{
+router.get('/signup', async (ctx, next)=>{
 
 });
 //注册提交处理页面
-router.post('/signup', async (ctx,next)=>{
+router.post('/signup', async (ctx, next)=>{
 
 });
 //登陆页面
-router.get('/signin', async (ctx,next)=>{
+router.get('/signin', async (ctx, next)=>{
 
 });
 //登陆提交页面
-router.post('/signin', async (ctx,next)=>{
+router.post('/signin', async (ctx, next)=>{
 
 });
 //个人中心页面
-router.get('/user', async (ctx,next)=>{
+router.get('/user', async (ctx, next)=>{
 
 });
 //个人中心--上传头像
-router.post('/avatar', async (ctx,next)=>{
+router.post('/avatar', async (ctx, next)=>{
 
 });
 //评论
-router.post('/comment', async (ctx,next)=>{
+router.post('/comment', async (ctx, next)=>{
 
 });
 server.use(router.routes());

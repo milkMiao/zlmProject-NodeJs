@@ -6,8 +6,8 @@ module.exports = {
     },
     //静态文件相关配置
     static: {
-        prefix: '/public',
-        dir: '/public',
+        prefix: '/public', //前缀
+        dir: './public',   //文件存储位置
         gzip: true,
         dynamic: true
     },
@@ -19,7 +19,6 @@ module.exports = {
         password: '12345678',
         database: 'kkb-mall'
     },
-
     //模版引擎相关配置
     tempalte:{
         dir: './template'
