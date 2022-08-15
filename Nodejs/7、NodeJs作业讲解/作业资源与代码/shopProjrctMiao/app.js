@@ -6,12 +6,22 @@ const koaBody = require('koa-body');
 const config = require('./config');
 const databaseMiddleware = require('./middlewares/database');
 const tplMiddleware = require('./middlewares/tempalte');
+const userMiddleware = require('./middlewares/user');
+// const authMiddleware = require('./middlewares/auth');
 
 const server= new koa();
 const router = new koaRouter();
 
+// cookie sign key
+server.keys = config.user.cookieSignKey;
+
 //静态资源代理
 server.use(koaStaticCache(config.static));
+
+// 用户
+server.use(userMiddleware());
+//权限
+// server.use(authMiddleware());
 
 //数据库中间件
 server.use(databaseMiddleware(config.database));
@@ -40,8 +50,8 @@ router.get('/', async (ctx, next)=>{
         })
     }
 
-    console.log("获取Tab分类信息_categories", categories);
-    console.log("获取某个Tab分类商品_categoryItems", categoryItems)
+    // console.log("获取Tab分类信息_categories", categories);
+    // console.log("获取某个Tab分类商品_categoryItems", categoryItems)
     ctx.render('index.html', {
         categories,
         categoryItems
@@ -79,32 +89,34 @@ router.get('/detail/:itemId', async (ctx, next)=>{
     page = Number(page) || 1;
     limit = Number(limit) || 4;
 
+    //Tab具体分类
     let categoryService = ctx.state.services.category;
     let categories = await categoryService.getCategories();
 
+    //某个具体Tab对应的商品集合
     let itemService = ctx.state.services.item;
-
     let item = await itemService.getItem(itemId);
     let category = categories.find(c => c.id == item.categoryId);
 
+    //商品详情-评价
     let commentService = ctx.state.services.comment;
-
-    let comments = await commentService.getComments(item.id, page, limit);
-
-    comments.comments = comments.comments.map(comment => {
+    let commentsObj = await commentService.getComments(item.id, page, limit);
+    
+    commentsObj.comments = commentsObj.comments.map(comment => {
         let d = new Date(comment.createdAt);
         return {
             ...comment,
             createAtByDate: `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`
         }
     })
-
+    console.log("评价：", commentsObj)
+    console.log('user', ctx.state.user)
     ctx.render('detail.html', {
         user: ctx.state.user,
         categories,
         category,
         item,
-        comments
+        commentsObj
     })
 });
 //注册页面

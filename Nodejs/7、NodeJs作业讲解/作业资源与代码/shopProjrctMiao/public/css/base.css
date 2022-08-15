@@ -92,9 +92,12 @@ ul {
   position: relative;
   display: block;
   width: 55px;
-  height: 55px;
+  height: 44px;
   overflow: hidden;
   background-color: #ff6700;
+  color: #FFF !important;
+  text-align: center;
+  padding-top: 22px;
 }
 .app-header .nav-list, .app-header .header-user {
   position: relative;

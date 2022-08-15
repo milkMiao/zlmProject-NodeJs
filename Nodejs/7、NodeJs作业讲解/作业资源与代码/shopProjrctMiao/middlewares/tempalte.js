@@ -1,4 +1,4 @@
-//数据库中间件
+//模版引擎---中间件
 const nunjucks = require('nunjucks'); //模版引擎【Node，浏览器中做模版引擎都可】
 
 module.exports = (config) =>{

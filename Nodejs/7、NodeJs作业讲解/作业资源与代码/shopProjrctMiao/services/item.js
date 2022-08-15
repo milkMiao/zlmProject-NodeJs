@@ -11,13 +11,13 @@ module.exports = (db)=>{
             page = Math.max(1, page);
             page = Math.min(page, pages);
             let offest = (page-1) * limit > 0 ? (page-1) * limit : -(page-1) * limit;
-            console.log('count:',count,'page:',page, 'pages:',pages, 'offest:',offest)
+            // console.log('count:',count,'page:',page, 'pages:',pages, 'offest:',offest)
 
             let[items] = await db.query(
                 'SELECT `id`, `category_id` as `categoryId`, `name`, `price`, `cover`,`description` FROM `items` WHERE `category_id`=? LIMIT ? OFFSET ?',
                 [categoryId, limit, offest]
             )
-            console.log("items商品", items)
+            // console.log("items商品", items)
 
             return {
                 page,
@@ -29,8 +29,12 @@ module.exports = (db)=>{
         },
 
         //获取某个Tab下--具体商品详情
-        getItem: async (id)=>{
-
+        getItem: async (id) => {
+            let [[item]] = await db.query(
+                "SELECT `id`, `name`, `price`, `cover`, `description`, `category_id` as `categoryId` FROM `items` WHERE `id` = ?",
+                [id]
+            )
+            return item;
         }
     }
 };
