@@ -24,6 +24,14 @@ module.exports = (db)=>{
                 comments//当前商品--评价信息集合
             }
 
+        },
+        //评价提交
+        postComment: async (itemId, userId, content) => {
+            let [{ insertId }] = await db.query(
+                "INSERT INTO `comments` (`item_id`, `user_id`, `content` ) VALUES (?,?,?)",
+                [itemId, userId, content]
+            )
+            return insertId;
         }
     }
 };

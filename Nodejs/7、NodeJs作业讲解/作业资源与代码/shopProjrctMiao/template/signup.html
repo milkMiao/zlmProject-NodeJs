@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="/public/css/sign.css" />
 {%endblock%}
 
-
 {%block main%}
 <div class="main">
   <div class="container">
@@ -13,22 +12,22 @@
         <h2 class="title">注册</h2>
       </div>
       <div class="c">
-        <form action="" class="sign-form">
+        <form action="/signup" method="post"  class="sign-form">
           <p>
             <label for="">用户名：</label>
-            <input type="text" class="input" />
+            <input type="text" class="input" name="username" />
           </p>
           <p>
             <label for="">密码：</label>
-            <input type="password" class="input" />
+            <input type="password" class="input" name="password" />
           </p>
           <p>
             <label for="">重复密码：</label>
-            <input type="password" class="input" />
+            <input type="password" class="input" name="repassword"/>
           </p>
           <p>
             <button class="btn btn-primary">注册</button>
-            <a href="" class="btn">我有账号，立即登录</a>
+            <a href="signin" class="btn">我有账号，立即登录</a>
           </p>
         </form>
       </div>

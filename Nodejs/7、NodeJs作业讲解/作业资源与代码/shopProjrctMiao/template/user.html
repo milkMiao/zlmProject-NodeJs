@@ -1,9 +1,9 @@
 {%extends 'layoutHtml.html' %}
+{% import 'macros.html' as macros %}
 
 {%block link%}
 <link rel="stylesheet" href="/public/css/user.css" />
 {%endblock%}
-
 
 {%block main%}
 <div class="main">
@@ -33,10 +33,15 @@
         <div class="c profile clearfix">
           <div class="avatar-box">
             <div class="avatar-area">
-              <div class="avatar-bg"
-                style="background-image: url('https://account.xiaomi.com/static/res/7c3e9b0/passport/acc-2014/img/n-avator-bg.png');">
-              </div>
-              <div class="avatar-edit"></div>
+              {%if user.avatar != ''%}
+              <div class="avatar-bg" style="background-image: url({{user.avatar}});"></div>
+              {%else%}
+              <div class="avatar-bg" style="background-image: url('/public/images/n-avator-bg.png');"></div>
+              {%endif%}
+              <div class="avatar-edit" id="avatar-edit"></div>
+              <form action="/avatar" method="post" id="avatar-form" style="display: none" enctype="multipart/form-data">
+                <input type="file" id="avatar" name="avatar">
+              </form>
             </div>
           </div>
           <div class="info-box">
@@ -47,11 +52,11 @@
               <div class="list">
                 <p>
                   <span class="k">姓名：</span>
-                  <span class="v">zMouse</span>
+                  <span class="v">{{user.username}}</span>
                 </p>
                 <p>
                   <span class="k">性别：</span>
-                  <span class="v">男</span>
+                  <span class="v">{{user.sex}}</span>
                 </p>
               </div>
             </div>
@@ -62,4 +67,19 @@
   </div>
 
 </div>
+
+<script>
+  //用户头像上传
+  let avatarElement = document.querySelector('#avatar');
+  let avatarFormElement = document.querySelector('#avatar-form');
+  let avatarEditElement = document.querySelector('#avatar-edit');
+
+  avatarEditElement.onclick = function () {
+    avatarElement.click();
+  }
+
+  avatarElement.onchange = function () {
+    avatarFormElement.submit();
+  }
+</script>
 {%endblock%}
