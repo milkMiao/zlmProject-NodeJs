@@ -1,0 +1,79 @@
+{%extends 'layout.html' %}
+{% import 'macros.html' as macros %}
+
+{%block link%}
+<link rel="stylesheet" href="/public/css/detail.css" />
+{%endblock%}
+
+{%block main%}
+<div class="main">
+  <div class="container">
+    <div class="box">
+      <div class="h">
+        <h2 class="title">{{category.name}}</h2>
+      </div>
+      <div class="c header">
+        <div class="figure">
+          <img src="/public/images/{{item.cover}}" />
+        </div>
+        <div class="con">
+          <h2 class="desc">
+            {{item.name}}
+          </h2>
+          <p class="price">{{(item.price/100).toFixed(2)}} 元</p>
+          <div class="btns">
+            <a href="" class="btn btn-primary">加入购物车</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="box">
+      <div class="h">
+        <h2 class="title">介绍</h2>
+      </div>
+      <div class="c">{{item.description}}</div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="box">
+      <div class="h">
+        <h2 class="title">评论</h2>
+      </div>
+      <div class="c clearfix">
+        <div class="comment-post">
+          <form action="/comment" method="post">
+            <p>
+              <textarea class="input" rows="5" name="content"></textarea>
+              <input type="hidden" name="itemId" value="{{item.id}}">
+            </p>
+            <p>
+              <button class="btn btn-primary">提交</button>
+            </p>
+          </form>
+        </div>
+        <div class="comment-list">
+          {% for comment in comments.comments%}
+          <div class="comment">
+            {%if comment.avatar != ''%}
+            <a class="avatar" style="background-image:url({{comment.avatar}})"></a>
+            {%else%}
+            <a class="avatar" style="background-image:url(/public/images/n-avator-bg.png)"></a>
+            {%endif%}
+            <a href="" class="user">{{comment.username}}</a>
+            <div class="datetime">{{comment.createAtByDate}}</div>
+            <div class="content">
+              {{comment.content}}
+            </div>
+          </div>
+          {%endfor%}
+        </div>
+        {{macros.pagination(comments.pages, comments.page)}}
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}
