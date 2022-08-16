@@ -283,7 +283,7 @@ router.post('/avatar', koaBody({
 
     ctx.redirect('/user');
 });
-//评论提交 [authMiddleware 登陆的权限]
+//商品详情页——评论提交 [authMiddleware 登陆的权限]
 router.post('/comment', authMiddleware(), koaBody(), async (ctx, next) => {
     let { itemId, content } = ctx.request.body;
     console.log('123', ctx.request.body);

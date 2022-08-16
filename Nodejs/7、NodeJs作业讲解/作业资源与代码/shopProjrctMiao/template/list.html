@@ -1,10 +1,9 @@
 {%extends 'layoutHtml.html' %}
-{% import 'macros.html' as macros %}
+{% import 'macros.html' as macros %} <!-- 分页 -->
 
 {%block link%}
 <link rel="stylesheet" href="/public/css/list.css" />
 {%endblock%}
-
 
 {%block main%}
 <div class="main">
@@ -33,7 +32,6 @@
         </ul>
       </div>
     </div>
-
     <div class="container">
       {{macros.pagination(items.pages, items.page)}}
     </div>
