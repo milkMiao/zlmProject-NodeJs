@@ -5,6 +5,8 @@ const chalk = require('chalk') //命令行染色
 
 const { clone } = require('./download')
 //子进程方法，重新封装
+// promisiy化spawn // 对接输出流
+// 对接输出流
 const spawn = async (...args) => {
     const { spawn } = require('child_process')//导出原始的spawn方法
     return new Promise(resolve => {
@@ -43,7 +45,7 @@ module.exports = async name => {
         ===========================
     `)
 
-    //自动打开进程 【例如：npm start】
+    //启动项目---自动打开进程 【例如：npm start】
     const open = require('open')
     open('http://localhost:8080')
     await spawn('npm', ['run', 'serve'], { cwd: `./${name}` })

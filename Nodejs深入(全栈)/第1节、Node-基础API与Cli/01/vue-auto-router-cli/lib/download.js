@@ -1,4 +1,4 @@
-// 克隆函数
+// 克隆脚手架
 const {promisify} = require('util')
 module.exports.clone = async (repo,desc) => {
     const download = promisify(require('download-git-repo'))
