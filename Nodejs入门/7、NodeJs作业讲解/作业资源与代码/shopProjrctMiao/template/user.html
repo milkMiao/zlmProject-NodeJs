@@ -1,0 +1,85 @@
+{%extends 'layoutHtml.html' %}
+{% import 'macros.html' as macros %}
+
+{%block link%}
+<link rel="stylesheet" href="/public/css/user.css" />
+{%endblock%}
+
+{%block main%}
+<div class="main">
+
+  <div class="container">
+    <div class="box clearfix">
+      <div class="h">
+        <h2 class="title">个人中心</h2>
+      </div>
+
+      <div class="sidebar">
+        <div class="c">
+          <div class="menu-box">
+            <h3 class="title">账户管理</h3>
+            <ul class="list">
+              <li class="active">
+                <a href="">个人信息</a>
+              </li>
+              <li>
+                <a href="">修改密码</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="c profile clearfix">
+          <div class="avatar-box">
+            <div class="avatar-area">
+              {%if user.avatar != ''%}
+              <div class="avatar-bg" style="background-image: url({{user.avatar}});"></div>
+              {%else%}
+              <div class="avatar-bg" style="background-image: url('/public/images/n-avator-bg.png');"></div>
+              {%endif%}
+              <div class="avatar-edit" id="avatar-edit"></div>
+              <form action="/avatar" method="post" id="avatar-form" style="display: none" enctype="multipart/form-data">
+                <input type="file" id="avatar" name="avatar">
+              </form>
+            </div>
+          </div>
+          <div class="info-box">
+            <div class="info-list">
+              <div class="h">
+                <h3>基础资料</h3>
+              </div>
+              <div class="list">
+                <p>
+                  <span class="k">姓名：</span>
+                  <span class="v">{{user.username}}</span>
+                </p>
+                <p>
+                  <span class="k">性别：</span>
+                  <span class="v">{{user.sex}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  //用户头像上传
+  let avatarElement = document.querySelector('#avatar');
+  let avatarFormElement = document.querySelector('#avatar-form');
+  let avatarEditElement = document.querySelector('#avatar-edit');
+
+  avatarEditElement.onclick = function () {
+    avatarElement.click();
+  }
+
+  avatarElement.onchange = function () {
+    avatarFormElement.submit();
+  }
+</script>
+{%endblock%}

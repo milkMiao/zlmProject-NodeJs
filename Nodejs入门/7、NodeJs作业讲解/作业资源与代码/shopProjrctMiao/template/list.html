@@ -1,0 +1,40 @@
+{%extends 'layoutHtml.html' %}
+{% import 'macros.html' as macros %} <!-- 分页 -->
+
+{%block link%}
+<link rel="stylesheet" href="/public/css/list.css" />
+{%endblock%}
+
+{%block main%}
+<div class="main">
+  <div class="container">
+    <div class="list-box">
+      <div class="h">
+        <h2 class="title">{{category.name}}</h2>
+      </div>
+      <div class="c clearfix">
+        <ul class="list clearfix">
+          {%for item in items.items%}
+          <li class="item">
+            <div class="figure">
+              <a href="/detail/{{item.id}}">
+                <img src="{{item.cover}}" alt="{{item.name}}" />
+                <!-- src="/public/images/{{item.cover}}" -->
+              </a>
+            </div>
+            <h3 class="title">
+              <a href="/detail/{{item.id}}">{{item.name}}</a>
+            </h3>
+            <p class="desc">{{item.description.substring(0, 26)}}</p>
+            <p class="price"><span class="num">{{(item.price/100).toFixed(2)}}</span>元</p>
+          </li>
+          {%endfor%}
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+      {{macros.pagination(items.pages, items.page)}}
+    </div>
+  </div>
+</div>
+{%endblock%}

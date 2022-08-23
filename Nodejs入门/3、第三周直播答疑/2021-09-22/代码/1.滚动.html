@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 300px;
+            border: 1px solid black;
+            overflow: scroll;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body style="height: 1000px;">
+<a href="" class="returnTop">回到顶部</a>
+  <div class="box">
+      <ul class="list"></ul>
+  </div>
+<input type="text" class="inputValue">
+
+
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+<div data-index="0">A</div>
+<div data-index="1">B</div>
+<div data-index="2">C</div>
+
+
+  <script>
+
+      /**
+       * 文档对象模型
+       *    文档(元素）=> 对象
+       *        结构（tree）=> 对象（tree）
+       */
+
+      // <ul></ul> => new HTMLUListElement() => listElement
+
+      let divElement = document.querySelector('.box')
+      let listElement = document.querySelector('.list')
+      let itemElement = listElement.children;
+      let returnTopElement = document.querySelector('.returnTop')
+      let inputValueElement = document.querySelector('.inputValue')
+
+      // let itemsRectCache = [10,11,45,31,12,56];
+
+      for (let i=0; i<100; i++) {
+          let li = document.createElement('li')
+          li.innerHTML = i
+
+          listElement.appendChild(li)
+      }
+
+        document.addEventListener('scroll', function() {
+            console.log(1111)
+        })
+
+      showOrHideReturnToButton()
+
+      divElement.addEventListener('scroll', function() {
+          console.log(2222)
+          showOrHideReturnToButton()
+      })
+
+      inputValueElement.addEventListener('keypress', function(e) {
+          if (e.keyCode === 13) {
+              console.log(this.value)
+                this.select()
+                this.focus()
+
+              // 找到 第 this.value 个 li 的位置
+              let t = this.value * itemElement[0].offsetHeight;
+              console.log(t)
+              divElement.scrollTop = t;
+          }
+      })
+
+      function showOrHideReturnToButton() {
+          returnTopElement.style.display = divElement.scrollTop > 30 ? 'block' : 'none'
+      }
+
+      // console.log(divElement.scrollTop)
+
+
+      // console.dir(divElement.onscroll);
+  </script>
+</body>
+</html>

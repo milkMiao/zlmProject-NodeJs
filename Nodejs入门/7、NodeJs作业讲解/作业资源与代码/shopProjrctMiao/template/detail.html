@@ -1,0 +1,83 @@
+{%extends 'layoutHtml.html' %}
+{% import 'macros.html' as macros %}
+
+{%block link%}
+<link rel="stylesheet" href="/public/css/detail.css" />
+{%endblock%}
+
+
+{%block main%}
+<div class="main">
+  <div class="container">
+    <div class="box">
+      <div class="h">
+        <h2 class="title">{{category.name}}</h2>
+      </div>
+      <div class="c header">
+        <div class="figure">
+          <img style="border: 1px solid #CCC;margin-right: 20px;" src="{{item.cover}}" />
+        </div>
+        <div class="con">
+          <h2 class="desc">
+            {{item.name}}+「购机赠价值798元双人定制体检卡；+1月得200G云空间月卡； 得2倍米金」
+          </h2>
+          <p class="price">{{(item.price/100).toFixed(2)}} 元</p>
+          <div class="btns">
+            <a href="" class="btn btn-primary">加入购物车</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="box">
+      <div class="h">
+        <h2 class="title">介绍</h2>
+      </div>
+      <div class="c">详细</div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="box">
+      <div class="h">
+        <h2 class="title">评论</h2>
+      </div>
+      <div class="c clearfix">
+        <div class="comment-post">
+          <form action="/comment" method="post">
+            <p>
+              <textarea class="input" rows="5" name="content"></textarea>
+              <input type="hidden" name="itemId" value="{{item.id}}">
+            </p>
+            <p>
+              <button class="btn btn-primary">提交</button>
+            </p>
+          </form>
+        </div>
+        <!-- 评价列表 -->
+        <div class="comment-list">
+          {% for comment in commentsObj.comments%}
+          <div class="comment">
+            {%if comment.avatar != ''%}
+            <a class="avatar" style="background-image:url({{comment.avatar}})"></a>
+            {%else%}
+            <a class="avatar" style="background-image:url(/public/images/n-avator-bg.png)"></a>
+            {%endif%}
+            <a href="" class="user">{{comment.username}},userId:{{comment.userId}},itemId:{{comment.itemId}}</a>
+            <div class="datetime">{{comment.createAtByDate}}</div>
+            <div class="content">
+              {{comment.content}}
+            </div>
+          </div>
+          {%endfor%}
+        </div>
+
+        <!-- 分页 -->
+        {{macros.pagination(commentsObj.pages, commentsObj.page)}}
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}

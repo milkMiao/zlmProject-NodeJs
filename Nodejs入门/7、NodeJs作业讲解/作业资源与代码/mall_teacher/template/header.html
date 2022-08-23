@@ -1,0 +1,38 @@
+<header class="app-header">
+    <div class="container clearfix">
+        <div class="header-logo">
+            <a href="/" title="" class="logo ir">官网</a>
+        </div>
+        <div class="header-nav fl">
+            <ul class="nav-list clearfix">
+                {%for category in categories%}
+                <li class="header-item">
+                    <a href="/list/{{category.id}}" class="link">
+                        <span class="text">{{category.name}}</span>
+                    </a>
+                </li>
+                {%endfor%}
+            </ul>
+        </div>
+        <ul class="header-user fr">
+            {%if user==null%}
+            <li class="header-item">
+                <a href="/signup" class="link">
+                    <span class="text">注册</span>
+                </a>
+            </li>
+            <li class="header-item">
+                <a href="/signin" class="link">
+                    <span class="text">登录</span>
+                </a>
+            </li>
+            {%else%}
+            <li class="header-item">
+                <a href="/user" class="link">
+                    <span class="text">{{user.username}}</span>
+                </a>
+            </li>
+            {%endif%}
+        </ul>
+    </div>
+</header>
