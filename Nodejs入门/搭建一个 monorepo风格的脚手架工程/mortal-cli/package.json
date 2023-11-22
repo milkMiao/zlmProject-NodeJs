@@ -1,0 +1,14 @@
+{
+  "name": "mortal-cli",
+  "version": "1.0.0",
+  "description": "搭建一个 monorepo 风格的脚手架工程",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ZLM",
+  "license": "ISC",
+  "bin":{
+    "mortal": "./bin/index.js"
+  }
+}
